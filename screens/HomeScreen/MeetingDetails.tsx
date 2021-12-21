@@ -11,14 +11,13 @@ import Slider from "@react-native-community/slider";
 
 type SalariesType = { salary: number; people: number };
 
-const MAX_MEETING_TIME = 480; // 8 hours
-const MIN_MEETING_TIME = 15; // Quarter of an hour
+const MAX_MEETING_TIME = 8;
+const MIN_MEETING_TIME = 0.25; // Quarter of an hour
 
 export default function MeetingDetails({ navigation }) {
-  const [meetingTime, setMeetingTime] = useState(15);
+  const [meetingTime, setMeetingTime] = useState(0.25);
   const [attendees, setAttendees] = useState<SalariesType[]>([
     { salary: 100000, people: 1 },
-    { salary: 200000, people: 1 },
   ]);
 
   function handleChange(
@@ -55,82 +54,134 @@ export default function MeetingDetails({ navigation }) {
     setAttendees(temp);
   }
 
+  const formatDollar = Intl.NumberFormat("en-US");
+
   return (
     <View style={{ height: "100%", justifyContent: "space-between" }}>
-      <ScrollView>
-        <View>
-          <Text>Length of meeting (in minutes)</Text>
-          <Text>{`${meetingTime}`}</Text>
+      <ScrollView height={400}>
+        <View style={styles.container}>
+          <View
+            style={{
+              ...styles.transparentBackground,
+              ...styles.spacedRow,
+            }}
+          >
+            <Text style={{ fontWeight: "bold" }}>Length of Meeting</Text>
+            <Text>{`${meetingTime} hours`}</Text>
+          </View>
+          <Slider
+            style={{ height: 50 }}
+            minimumValue={MIN_MEETING_TIME}
+            maximumValue={MAX_MEETING_TIME}
+            value={meetingTime}
+            step={0.25}
+            onValueChange={(value) => setMeetingTime(value)}
+            minimumTrackTintColor="#000000"
+            maximumTrackTintColor="#000000"
+          />
         </View>
-        <Slider
-          style={{ height: 40 }}
-          minimumValue={MIN_MEETING_TIME}
-          maximumValue={MAX_MEETING_TIME}
-          value={meetingTime}
-          step={15}
-          onValueChange={(value) => setMeetingTime(value)}
-          minimumTrackTintColor="#000000"
-          maximumTrackTintColor="#000000"
-        />
-        <Text>Attendees</Text>
-        {attendees.map((a, index) => {
-          return (
-            <View
-              key={`Attendee-${index}`}
-              style={[styles.section, { borderTopWidth: index === 0 ? 1 : 0 }]}
-            >
-              <Text>Salary</Text>
-              <TouchableOpacity
-                style={{
-                  borderColor: "black",
-                  borderWidth: 1,
-                  padding: 5,
-                  marginTop: 8,
-                  borderRadius: 3,
-                }}
-              >
-                <Text>{a.salary}</Text>
-              </TouchableOpacity>
+        <View style={[styles.container, { marginTop: 8 }]}>
+          <Text style={{ marginTop: 8, marginBottom: 8, fontWeight: "bold" }}>
+            Attendees
+          </Text>
+          {attendees.map((a, index) => {
+            return (
               <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  marginTop: 8,
-                }}
+                key={`Attendee-${index}`}
+                style={[
+                  styles.section,
+                  styles.transparentBackground,
+                  { borderTopWidth: index === 0 ? 1 : 0 },
+                ]}
               >
-                <Text>Number of People</Text>
-                <Text>{`${a.people}`}</Text>
-              </View>
-              <Slider
-                style={{ height: 40 }}
-                minimumValue={1}
-                maximumValue={10}
-                value={a.people}
-                step={1}
-                onValueChange={(value) => handleChange(index, value, "People")}
-                minimumTrackTintColor="#FFFFFF"
-                maximumTrackTintColor="#000000"
-              />
-              {index !== 0 && (
+                <Text>Salary</Text>
                 <TouchableOpacity
-                  onPress={() => removeItem(index)}
-                  style={{ position: "absolute", right: 0, top: 10 }}
+                  style={{
+                    borderColor: "black",
+                    backgroundColor: "white",
+                    borderWidth: 1,
+                    padding: 5,
+                    marginTop: 8,
+                    borderRadius: 3,
+                  }}
                 >
-                  <Text>X</Text>
+                  <Text>{`$${formatDollar.format(a.salary)}`}</Text>
                 </TouchableOpacity>
-              )}
-            </View>
-          );
-        })}
-        <TouchableOpacity
-          onPress={() => addItem()}
-          disabled={attendees.length === 10}
-        >
-          <Text>Add Attendee</Text>
-        </TouchableOpacity>
+                <View
+                  style={{
+                    ...styles.spacedRow,
+                    ...styles.transparentBackground,
+                    marginTop: 8,
+                  }}
+                >
+                  <Text>Number of People</Text>
+                  <Text>{`${a.people}`}</Text>
+                </View>
+                <Slider
+                  style={{ height: 50 }}
+                  minimumValue={1}
+                  maximumValue={10}
+                  value={a.people}
+                  step={1}
+                  onValueChange={(value) =>
+                    handleChange(index, value, "People")
+                  }
+                  minimumTrackTintColor="#FFFFFF"
+                  maximumTrackTintColor="#000000"
+                />
+                {index !== 0 && (
+                  <TouchableOpacity
+                    onPress={() => removeItem(index)}
+                    style={{ position: "absolute", right: 0, top: 10 }}
+                  >
+                    <Text>X</Text>
+                  </TouchableOpacity>
+                )}
+              </View>
+            );
+          })}
+          <TouchableOpacity
+            onPress={() => addItem()}
+            disabled={attendees.length === 10}
+            style={{
+              marginTop: 12,
+              padding: 8,
+              borderColor: "black",
+              backgroundColor: "white",
+              borderWidth: 1,
+              width: "100%",
+              alignItems: "center",
+              borderRadius: 8,
+            }}
+          >
+            <Text>Add Attendee</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
-      <View>
-        <TouchableOpacity>
+      <View
+        style={{
+          alignItems: "center",
+          paddingTop: 20,
+        }}
+      >
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("MeetingResults", {
+              meetingDetails: {
+                meetingTime: meetingTime,
+                attendeeInformation: attendees,
+              },
+            })
+          }
+          style={{
+            padding: 8,
+            borderColor: "black",
+            borderWidth: 1,
+            width: "100%",
+            alignItems: "center",
+            borderRadius: 8,
+          }}
+        >
           <Text>Calculate</Text>
         </TouchableOpacity>
       </View>
@@ -140,12 +191,12 @@ export default function MeetingDetails({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "flex-start",
-    paddingTop: 30,
-    backgroundColor: "#c0aeff",
+    backgroundColor: "#dedede",
+    padding: 8,
+    borderRadius: 8,
   },
+  transparentBackground: { backgroundColor: "transparent" },
+  spacedRow: { flexDirection: "row", justifyContent: "space-between" },
   header: {
     padding: 20,
     backgroundColor: "#c0aeff",

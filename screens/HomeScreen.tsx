@@ -57,7 +57,7 @@ export default function HomeScreen({ navigation }) {
           },
         ]}
       >
-        <MeetingDetails />
+        <MeetingDetails navigation={navigation} />
       </View>
     </View>
   );

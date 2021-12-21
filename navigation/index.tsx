@@ -16,6 +16,7 @@ import { ColorSchemeName, Pressable } from "react-native";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import HomeScreen from "../screens/HomeScreen";
+import MeetingCalculationsScreen from "../screens/MeetingCalculationsScreen";
 import {
   RootStackParamList,
   RootTabParamList,
@@ -31,10 +32,6 @@ export default function Navigation() {
   );
 }
 
-/**
- * A root stack navigator is often used for displaying modals on top of all other content.
- * https://reactnavigation.org/docs/modal
- */
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
@@ -43,6 +40,11 @@ function RootNavigator() {
       <Stack.Screen
         name="Home"
         component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="MeetingResults"
+        component={MeetingCalculationsScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
