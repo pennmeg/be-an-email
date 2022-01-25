@@ -57,110 +57,107 @@ export default function MeetingDetails({ navigation }) {
   const formatDollar = Intl.NumberFormat("en-US");
 
   return (
-    <View style={{ height: "100%", justifyContent: "space-between" }}>
-      <ScrollView height={400}>
-        <View style={styles.container}>
-          <View
-            style={{
-              ...styles.transparentBackground,
-              ...styles.spacedRow,
-            }}
-          >
-            <Text style={{ fontWeight: "bold" }}>Length of Meeting</Text>
-            <Text>{`${meetingTime} hours`}</Text>
-          </View>
-          <Slider
-            style={{ height: 50 }}
-            minimumValue={MIN_MEETING_TIME}
-            maximumValue={MAX_MEETING_TIME}
-            value={meetingTime}
-            step={0.25}
-            onValueChange={(value) => setMeetingTime(value)}
-            minimumTrackTintColor="#000000"
-            maximumTrackTintColor="#000000"
-          />
+    <ScrollView style={{ paddingTop: 12 }}>
+      <View style={styles.container}>
+        <View
+          style={{
+            ...styles.transparentBackground,
+            ...styles.spacedRow,
+          }}
+        >
+          <Text style={{ fontWeight: "bold" }}>Length of Meeting</Text>
+          <Text>{`${meetingTime} hours`}</Text>
         </View>
-        <View style={[styles.container, { marginTop: 8 }]}>
-          <Text style={{ marginTop: 8, marginBottom: 8, fontWeight: "bold" }}>
-            Attendees
-          </Text>
-          {attendees.map((a, index) => {
-            return (
-              <View
-                key={`Attendee-${index}`}
-                style={[
-                  styles.section,
-                  styles.transparentBackground,
-                  { borderTopWidth: index === 0 ? 1 : 0 },
-                ]}
+        <Slider
+          style={{ height: 50 }}
+          minimumValue={MIN_MEETING_TIME}
+          maximumValue={MAX_MEETING_TIME}
+          value={meetingTime}
+          step={0.25}
+          onValueChange={(value) => setMeetingTime(value)}
+          minimumTrackTintColor="#000000"
+          maximumTrackTintColor="#000000"
+        />
+      </View>
+      <View style={[styles.container, { marginTop: 8 }]}>
+        <Text style={{ marginTop: 8, marginBottom: 8, fontWeight: "bold" }}>
+          Attendees
+        </Text>
+        {attendees.map((a, index) => {
+          return (
+            <View
+              key={`Attendee-${index}`}
+              style={[
+                styles.section,
+                styles.transparentBackground,
+                { borderTopWidth: index === 0 ? 1 : 0 },
+              ]}
+            >
+              <Text>Salary</Text>
+              <TouchableOpacity
+                style={{
+                  borderColor: "black",
+                  backgroundColor: "white",
+                  borderWidth: 1,
+                  padding: 5,
+                  marginTop: 8,
+                  borderRadius: 3,
+                }}
               >
-                <Text>Salary</Text>
-                <TouchableOpacity
-                  style={{
-                    borderColor: "black",
-                    backgroundColor: "white",
-                    borderWidth: 1,
-                    padding: 5,
-                    marginTop: 8,
-                    borderRadius: 3,
-                  }}
-                >
-                  <Text>{`$${formatDollar.format(a.salary)}`}</Text>
-                </TouchableOpacity>
-                <View
-                  style={{
-                    ...styles.spacedRow,
-                    ...styles.transparentBackground,
-                    marginTop: 8,
-                  }}
-                >
-                  <Text>Number of People</Text>
-                  <Text>{`${a.people}`}</Text>
-                </View>
-                <Slider
-                  style={{ height: 50 }}
-                  minimumValue={1}
-                  maximumValue={10}
-                  value={a.people}
-                  step={1}
-                  onValueChange={(value) =>
-                    handleChange(index, value, "People")
-                  }
-                  minimumTrackTintColor="#FFFFFF"
-                  maximumTrackTintColor="#000000"
-                />
-                {index !== 0 && (
-                  <TouchableOpacity
-                    onPress={() => removeItem(index)}
-                    style={{ position: "absolute", right: 0, top: 10 }}
-                  >
-                    <Text>X</Text>
-                  </TouchableOpacity>
-                )}
+                <Text>{`$${formatDollar.format(a.salary)}`}</Text>
+              </TouchableOpacity>
+              <View
+                style={{
+                  ...styles.spacedRow,
+                  ...styles.transparentBackground,
+                  marginTop: 8,
+                }}
+              >
+                <Text>Number of People</Text>
+                <Text>{`${a.people}`}</Text>
               </View>
-            );
-          })}
-          <TouchableOpacity
-            onPress={() => addItem()}
-            disabled={attendees.length === 10}
-            style={{
-              marginTop: 12,
-              padding: 8,
-              borderColor: "black",
-              backgroundColor: "white",
-              borderWidth: 1,
-              width: "100%",
-              alignItems: "center",
-              borderRadius: 8,
-            }}
-          >
-            <Text>Add Attendee</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+              <Slider
+                style={{ height: 50 }}
+                minimumValue={1}
+                maximumValue={10}
+                value={a.people}
+                step={1}
+                onValueChange={(value) => handleChange(index, value, "People")}
+                minimumTrackTintColor="#FFFFFF"
+                maximumTrackTintColor="#000000"
+              />
+              {index !== 0 && (
+                <TouchableOpacity
+                  onPress={() => removeItem(index)}
+                  style={{ position: "absolute", right: 0, top: 10 }}
+                >
+                  <Text>X</Text>
+                </TouchableOpacity>
+              )}
+            </View>
+          );
+        })}
+        <TouchableOpacity
+          onPress={() => addItem()}
+          disabled={attendees.length === 10}
+          style={{
+            marginTop: 12,
+            padding: 8,
+            borderColor: "black",
+            backgroundColor: "white",
+            borderWidth: 1,
+            width: "100%",
+            alignItems: "center",
+            borderRadius: 8,
+          }}
+        >
+          <Text>Add Attendee</Text>
+        </TouchableOpacity>
+      </View>
       <View
         style={{
           alignItems: "center",
+          justifyContent: "center",
           paddingTop: 20,
         }}
       >
@@ -185,7 +182,7 @@ export default function MeetingDetails({ navigation }) {
           <Text>Calculate</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
