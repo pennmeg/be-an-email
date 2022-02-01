@@ -2,6 +2,8 @@ import { StyleSheet, TouchableOpacity, Text as RNText } from "react-native";
 import { Text, View } from "../../../../components/Themed";
 import Slider from "@react-native-community/slider";
 import { SalariesType } from "../../../../constants/Salaries";
+import Button from "../../../../components/Button";
+import RemoveButton from "../../../../components/RemoveButton";
 
 const MeetingAttendees = ({
   callBack,
@@ -96,32 +98,21 @@ const MeetingAttendees = ({
               maximumTrackTintColor="#000"
             />
             {index !== 0 && (
-              <TouchableOpacity
+              <RemoveButton
+                accessibilityLabel="Remove Item"
                 onPress={() => removeItem(index)}
                 style={{ position: "absolute", right: 0, top: 10 }}
-              >
-                <Text>X</Text>
-              </TouchableOpacity>
+              />
             )}
           </View>
         );
       })}
-      <TouchableOpacity
+      <Button
         onPress={() => addItem()}
         disabled={attendees.length === 10}
-        style={{
-          marginTop: 12,
-          padding: 8,
-          borderColor: "black",
-          backgroundColor: "white",
-          borderWidth: 1,
-          width: "100%",
-          alignItems: "center",
-          borderRadius: 8,
-        }}
-      >
-        <Text>Add Attendee</Text>
-      </TouchableOpacity>
+        text="Add Attendee"
+        variant="Secondary"
+      />
     </View>
   );
 };

@@ -1,10 +1,11 @@
-import { StyleSheet, TouchableOpacity, Text as RNText } from "react-native";
+import { StyleSheet, Text as RNText } from "react-native";
 import { Fragment, useState } from "react";
 import { Text, View } from "../../../../components/Themed";
 import MeetingLength from "./MeetingLength";
 import MeetingAttendees from "./MeetingAttendees";
 import { SalariesType } from "../../../../constants/Salaries";
 import { RootStackScreenProps } from "../../../../types";
+import Button from "../../../../components/Button";
 
 // 2F2E41 "black"
 // F2F2F2
@@ -37,7 +38,7 @@ const MeetingDetails = ({ navigation }) => {
           paddingBottom: 50,
         }}
       >
-        <TouchableOpacity
+        <Button
           onPress={() =>
             navigation.navigate("MeetingResults", {
               meetingDetails: {
@@ -46,18 +47,9 @@ const MeetingDetails = ({ navigation }) => {
               },
             })
           }
-          style={{
-            padding: 12,
-            backgroundColor: "#A7A0FD",
-            borderColor: "#A7A0FD",
-            borderWidth: 1,
-            width: "100%",
-            alignItems: "center",
-            borderRadius: 8,
-          }}
-        >
-          <Text style={{ color: "black", fontWeight: "bold" }}>Calculate</Text>
-        </TouchableOpacity>
+          text="Calculate"
+          variant="Primary"
+        />
       </View>
     </Fragment>
   );

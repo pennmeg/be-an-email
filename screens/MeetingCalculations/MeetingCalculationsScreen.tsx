@@ -1,6 +1,5 @@
 import {
   StyleSheet,
-  TouchableOpacity,
   Text as RNText,
   Image,
   ActivityIndicator,
@@ -9,10 +8,17 @@ import {
 import { useState, useEffect, Fragment } from "react";
 import { View } from "../../components/Themed";
 import UndrawImage from "../../assets/images/undraw_Celebration_re_kc9k.png";
+import Button from "../../components/Button";
+import { SalariesType } from "../../constants/Salaries";
 
 // Average, FT, salaried employee works 40 hours a week
 // Based on this, the average salaried person works 2,080 (40 x 52) hours a year
 const HOURS_PER_YEAR = 2080;
+
+type MeetingType = {
+  meetingTime: number;
+  attendeeInformation: SalariesType[];
+};
 
 export default function MeetingCalculationsScreen({ navigation, route }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,7 +28,7 @@ export default function MeetingCalculationsScreen({ navigation, route }) {
 
   const formatDollar = Intl.NumberFormat("en-US");
 
-  function calculateMeeting(meetingDetails) {
+  function calculateMeeting(meetingDetails: MeetingType) {
     // Get all salaries to determine hourly rate based on salary
     const allSalaries = meetingDetails.attendeeInformation.map((a) => a.salary);
     const estimatedHourlyRates = allSalaries.map((s) => s / HOURS_PER_YEAR);
@@ -70,23 +76,12 @@ export default function MeetingCalculationsScreen({ navigation, route }) {
             <RNText>Your meeting cost approximately </RNText>
             <RNText style={{ fontWeight: "bold" }}>{`$${meetingTotal}`}</RNText>
           </View>
-          <TouchableOpacity
+          <Button
+            variant="Primary"
+            text="Go Home"
+            width={"90%"}
             onPress={() => navigation.navigate("Home")}
-            style={{
-              marginTop: 12,
-              padding: 12,
-              backgroundColor: "#A7A0FD",
-              borderColor: "#A7A0FD",
-              borderWidth: 1,
-              width: "90%",
-              alignItems: "center",
-              borderRadius: 8,
-            }}
-          >
-            <RNText style={{ color: "black", fontWeight: "bold" }}>
-              Go Home
-            </RNText>
-          </TouchableOpacity>
+          />
         </Fragment>
       )}
     </View>
