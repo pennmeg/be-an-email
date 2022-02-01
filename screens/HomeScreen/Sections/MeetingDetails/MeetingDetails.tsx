@@ -6,6 +6,9 @@ import MeetingAttendees from "./MeetingAttendees";
 import { SalariesType } from "../../../../constants/Salaries";
 import { RootStackScreenProps } from "../../../../types";
 
+// 2F2E41 "black"
+// F2F2F2
+
 const MeetingDetails = ({ navigation }) => {
   const [meetingTime, setMeetingTime] = useState(0.25);
   const [attendees, setAttendees] = useState<SalariesType[]>([
@@ -31,7 +34,7 @@ const MeetingDetails = ({ navigation }) => {
           alignItems: "center",
           justifyContent: "center",
           paddingTop: 20,
-          paddingBottom: 500,
+          paddingBottom: 50,
         }}
       >
         <TouchableOpacity
@@ -45,8 +48,8 @@ const MeetingDetails = ({ navigation }) => {
           }
           style={{
             padding: 12,
-            backgroundColor: "#c0aeff",
-            borderColor: "#c0aeff",
+            backgroundColor: "#A7A0FD",
+            borderColor: "#A7A0FD",
             borderWidth: 1,
             width: "100%",
             alignItems: "center",
@@ -79,7 +82,7 @@ const styles = StyleSheet.create({
   purpleBorder: {
     height: 16,
     width: 180,
-    backgroundColor: "#c0aeff",
+    backgroundColor: "#A7A0FD",
     position: "absolute",
     top: 10,
     left: -4,
@@ -92,10 +95,6 @@ const styles = StyleSheet.create({
   },
   transparentBackground: { backgroundColor: "transparent" },
   spacedRow: { flexDirection: "row", justifyContent: "space-between" },
-  header: {
-    padding: 20,
-    backgroundColor: "#c0aeff",
-  },
   section: {
     paddingVertical: 20,
     borderBottomWidth: 1,

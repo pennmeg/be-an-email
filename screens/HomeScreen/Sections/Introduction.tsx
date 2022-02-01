@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   purpleBorder: {
     height: 18,
     width: 320,
-    backgroundColor: "#c0aeff",
+    backgroundColor: "#A7A0FD",
     position: "absolute",
     top: 19,
     left: -2,

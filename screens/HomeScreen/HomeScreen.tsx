@@ -1,15 +1,27 @@
-import { StyleSheet, Text as RNText, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  Text as RNText,
+  ScrollView,
+  Image,
+  View,
+  Dimensions,
+} from "react-native";
 import Instructions from "./Sections/Instructions";
 import MeetingDetails from "./Sections/MeetingDetails/MeetingDetails";
 import Introduction from "./Sections/Introduction";
-import { RootStackScreenProps } from "../../types";
+import UndrawImage from "../../assets/images/undraw_Meeting_re_i53h.png";
 
 export default function HomeScreen({ navigation }) {
+  const screenWidth = Dimensions.get("screen").width;
+
   return (
     <ScrollView style={{ backgroundColor: "white", padding: 20 }}>
       <RNText style={styles.title}>
         This Meeting Could Have Been An Email
       </RNText>
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <Image width={screenWidth} source={UndrawImage} />
+      </View>
       <Introduction />
       <Instructions />
       <MeetingDetails navigation={navigation} />
@@ -25,7 +37,9 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     backgroundColor: "white",
   },
-
+  image: {
+    width: "100%",
+  },
   title: {
     marginTop: 40,
     fontSize: 24,

@@ -24,7 +24,7 @@ const Instructions = () => {
 const styles = StyleSheet.create({
   greyBackground: {
     marginVertical: 12,
-    backgroundColor: "#efefef",
+    backgroundColor: "#F2F2F2",
     padding: 16,
     borderRadius: 8,
   },

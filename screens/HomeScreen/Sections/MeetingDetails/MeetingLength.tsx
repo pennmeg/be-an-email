@@ -54,26 +54,13 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
     marginTop: 12,
   },
-  purpleBorder: {
-    height: 16,
-    width: 180,
-    backgroundColor: "#c0aeff",
-    position: "absolute",
-    top: 10,
-    left: -4,
-    zIndex: -1,
-  },
   container: {
-    backgroundColor: "#efefef",
+    backgroundColor: "#F2F2F2",
     padding: 8,
     borderRadius: 8,
   },
   transparentBackground: { backgroundColor: "transparent" },
   spacedRow: { flexDirection: "row", justifyContent: "space-between" },
-  header: {
-    padding: 20,
-    backgroundColor: "#c0aeff",
-  },
   section: {
     paddingVertical: 20,
     borderBottomWidth: 1,
