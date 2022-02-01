@@ -7,9 +7,9 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { useState, useEffect, Fragment } from "react";
-import { Text, View } from "../components/Themed";
-import Instructions from "./HomeScreen/Instructions";
-import MeetingDetails from "./HomeScreen/MeetingDetails";
+import { Text, View } from "../../components/Themed";
+import Instructions from "../HomeScreen/Sections/Instructions";
+import MeetingDetails from "../HomeScreen/Sections/MeetingDetails/MeetingDetails";
 
 // Average, FT, salaried employee works 40 hours a week
 // Based on this, the average salaried person works 2,080 (40 x 52) hours a year
