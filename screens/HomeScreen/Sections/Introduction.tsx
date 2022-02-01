@@ -1,13 +1,21 @@
 import { StyleSheet, View, Text as RNText } from "react-native";
 import { Fragment } from "react";
+import PurpleText from "../../../components/PurpleText";
 
 const Introduction = () => {
   return (
     <Fragment>
-      <View style={styles.borderContainer}>
-        <RNText style={styles.title}>We've all been there.</RNText>
-        <View style={styles.purpleBorder}></View>
-      </View>
+      <PurpleText
+        purpleStyles={{
+          height: 18,
+          width: 320,
+          top: 19,
+          left: -2,
+        }}
+        marginOptions={{ marginHorizontal: 12, marginVertical: 12 }}
+        textStyles={{ fontSize: 32, textAlign: "center", lineHeight: 38 }}
+        text="We've all been there."
+      />
       <View style={{ marginVertical: 12 }}>
         <RNText
           style={styles.lineHeight}
@@ -29,30 +37,8 @@ const Introduction = () => {
 };
 
 const styles = StyleSheet.create({
-  title: {
-    fontWeight: "bold",
-    fontSize: 32,
-    textAlign: "center",
-    lineHeight: 38,
-  },
   lineHeight: {
     lineHeight: 18,
-  },
-  borderContainer: {
-    position: "relative",
-    justifyContent: "flex-start",
-    paddingBottom: 8,
-    marginHorizontal: 12,
-    marginVertical: 12,
-  },
-  purpleBorder: {
-    height: 18,
-    width: 320,
-    backgroundColor: "#A7A0FD",
-    position: "absolute",
-    top: 19,
-    left: -2,
-    zIndex: -1,
   },
 });
 

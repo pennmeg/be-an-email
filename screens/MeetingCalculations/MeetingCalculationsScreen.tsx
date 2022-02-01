@@ -10,6 +10,7 @@ import { View } from "../../components/Themed";
 import UndrawImage from "../../assets/images/undraw_Celebration_re_kc9k.png";
 import Button from "../../components/Button";
 import { SalariesType } from "../../constants/Salaries";
+import PurpleText from "../../components/PurpleText";
 
 // Average, FT, salaried employee works 40 hours a week
 // Based on this, the average salaried person works 2,080 (40 x 52) hours a year
@@ -20,7 +21,19 @@ type MeetingType = {
   attendeeInformation: SalariesType[];
 };
 
-export default function MeetingCalculationsScreen({ navigation, route }) {
+type ScreenProps = {
+  navigation: any;
+  route: {
+    params: {
+      meetingDetails: MeetingType;
+    };
+  };
+};
+
+export default function MeetingCalculationsScreen({
+  navigation,
+  route,
+}: ScreenProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [meetingTotal, setMeetingTotal] = useState(null);
 
@@ -65,10 +78,21 @@ export default function MeetingCalculationsScreen({ navigation, route }) {
         <ActivityIndicator size="large" color="#000000" />
       ) : (
         <Fragment>
-          <View style={styles.borderContainer}>
-            <RNText style={styles.title}>Congratulations!</RNText>
-            <View style={styles.purpleBorder}></View>
-          </View>
+          <PurpleText
+            textStyles={{
+              fontSize: 32,
+              textAlign: "center",
+              lineHeight: 38,
+            }}
+            purpleStyles={{
+              height: 18,
+              width: 270,
+              top: 19,
+              left: -2,
+            }}
+            text="Congratulations!"
+            marginOptions={{ marginHorizontal: 12, marginVertical: 12 }}
+          />
           <View style={{ justifyContent: "center", alignItems: "center" }}>
             <Image width={screenWidth} source={UndrawImage} />
           </View>
@@ -96,29 +120,7 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     backgroundColor: "white",
   },
-  title: {
-    fontWeight: "bold",
-    fontSize: 32,
-    textAlign: "center",
-    lineHeight: 38,
-  },
   lineHeight: {
     lineHeight: 18,
-  },
-  borderContainer: {
-    position: "relative",
-    justifyContent: "flex-start",
-    paddingBottom: 8,
-    marginHorizontal: 12,
-    marginVertical: 12,
-  },
-  purpleBorder: {
-    height: 18,
-    width: 270,
-    backgroundColor: "#A7A0FD",
-    position: "absolute",
-    top: 19,
-    left: -2,
-    zIndex: -1,
   },
 });
