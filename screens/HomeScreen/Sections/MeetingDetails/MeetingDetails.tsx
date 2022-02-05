@@ -4,7 +4,7 @@ import MeetingLength from "./MeetingLength";
 import MeetingAttendees from "./MeetingAttendees";
 import Button from "../../../../components/button/Button";
 import PurpleText from "../../../../components/PurpleText";
-import { SalariesType } from "../../../../types";
+import { SalariesType } from "../../../../types/index";
 
 const MeetingDetails = ({ navigation }) => {
   const [meetingTime, setMeetingTime] = useState(0.25);
