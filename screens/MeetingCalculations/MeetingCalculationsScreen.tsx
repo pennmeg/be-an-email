@@ -1,16 +1,13 @@
-import {
-  StyleSheet,
-  Text as RNText,
-  Image,
-  ActivityIndicator,
-  Dimensions,
-} from "react-native";
+import { StyleSheet, Image, ActivityIndicator, View } from "react-native";
 import { useState, useEffect, Fragment } from "react";
-import { View } from "../../components/Themed";
-import UndrawImage from "../../assets/images/undraw_Celebration_re_kc9k.png";
-import Button from "../../components/Button";
-import { SalariesType } from "../../constants/Salaries";
+import Button from "../../components/button/Button";
+import { formatDollar, SalariesType } from "../../constants/Salaries";
 import PurpleText from "../../components/PurpleText";
+import { black, white } from "../../constants/Colors";
+import { Text } from "../../components/Font";
+import { screenWidth } from "../../constants/Layout";
+// @ts-ignore
+import UndrawImage from "../../assets/images/undraw_Celebration_re_kc9k.png";
 
 // Average, FT, salaried employee works 40 hours a week
 // Based on this, the average salaried person works 2,080 (40 x 52) hours a year
@@ -35,11 +32,7 @@ export default function MeetingCalculationsScreen({
   route,
 }: ScreenProps) {
   const [isLoading, setIsLoading] = useState(true);
-  const [meetingTotal, setMeetingTotal] = useState(null);
-
-  const screenWidth = Dimensions.get("screen").width;
-
-  const formatDollar = Intl.NumberFormat("en-US");
+  const [meetingTotal, setMeetingTotal] = useState<null | string>(null);
 
   function calculateMeeting(meetingDetails: MeetingType) {
     // Get all salaries to determine hourly rate based on salary
@@ -59,7 +52,7 @@ export default function MeetingCalculationsScreen({
     });
 
     // Get total and format into usable dollar amount
-    const total = individualHourlyRates.reduce((acc, curr) => {
+    const total = individualRatesPerMeeting.reduce((acc, curr) => {
       return acc + curr;
     });
 
@@ -75,7 +68,7 @@ export default function MeetingCalculationsScreen({
   return (
     <View style={styles.container}>
       {isLoading ? (
-        <ActivityIndicator size="large" color="#000000" />
+        <ActivityIndicator size="large" color={black} />
       ) : (
         <Fragment>
           <PurpleText
@@ -97,8 +90,8 @@ export default function MeetingCalculationsScreen({
             <Image width={screenWidth} source={UndrawImage} />
           </View>
           <View style={{ flexDirection: "row" }}>
-            <RNText>Your meeting cost approximately </RNText>
-            <RNText style={{ fontWeight: "bold" }}>{`$${meetingTotal}`}</RNText>
+            <Text>Your meeting cost approximately </Text>
+            <Text isBold>{`$${meetingTotal}`}</Text>
           </View>
           <Button
             variant="Primary"
@@ -118,9 +111,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingTop: 30,
-    backgroundColor: "white",
-  },
-  lineHeight: {
-    lineHeight: 18,
+    backgroundColor: white,
   },
 });

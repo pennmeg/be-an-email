@@ -1,6 +1,7 @@
-import { StyleSheet, Text as RNText } from "react-native";
-import { View } from "../../../../components/Themed";
+import { StyleSheet, View } from "react-native";
+import { Text } from "../../../../components/Font";
 import Slider from "@react-native-community/slider";
+import { black, lightGrey } from "../../../../constants/Colors";
 
 const MAX_MEETING_TIME = 8;
 const MIN_MEETING_TIME = 0.25; // Quarter of an hour
@@ -16,12 +17,11 @@ const MeetingLength = ({
     <View style={styles.container}>
       <View
         style={{
-          ...styles.transparentBackground,
           ...styles.spacedRow,
         }}
       >
-        <RNText style={{ fontWeight: "bold" }}>Length of Meeting</RNText>
-        <RNText>{`${meetingTime} hours`}</RNText>
+        <Text isBold>Length of Meeting</Text>
+        <Text>{`${meetingTime} hours`}</Text>
       </View>
       <Slider
         testID="Slider--MeetingTime"
@@ -31,8 +31,8 @@ const MeetingLength = ({
         value={meetingTime}
         step={0.25}
         onValueChange={(value) => callBack(value)}
-        minimumTrackTintColor="#000"
-        maximumTrackTintColor="#000"
+        minimumTrackTintColor={black}
+        maximumTrackTintColor={black}
       />
     </View>
   );
@@ -41,35 +41,10 @@ const MeetingLength = ({
 export default MeetingLength;
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    lineHeight: 24,
-    paddingBottom: 10,
-    textAlign: "left",
-  },
-  borderContainer: {
-    position: "relative",
-    justifyContent: "flex-start",
-    paddingBottom: 8,
-    marginTop: 12,
-  },
   container: {
-    backgroundColor: "#F2F2F2",
+    backgroundColor: lightGrey,
     padding: 8,
     borderRadius: 8,
   },
-  transparentBackground: { backgroundColor: "transparent" },
   spacedRow: { flexDirection: "row", justifyContent: "space-between" },
-  section: {
-    paddingVertical: 20,
-    borderBottomWidth: 1,
-    borderColor: "black",
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
 });

@@ -1,4 +1,5 @@
 import { StyleSheet, TouchableOpacity, Text as RNText } from "react-native";
+import { black, purple, white } from "../../constants/Colors";
 
 type ButtonProps = {
   variant: "Primary" | "Secondary";
@@ -9,8 +10,8 @@ type ButtonProps = {
 };
 
 const Button = ({ variant, onPress, width, text, disabled }: ButtonProps) => {
-  const backgroundColor = variant === "Primary" ? "#A7A0FD" : "white";
-  const borderColor = variant === "Primary" ? "#A7A0FD" : "black";
+  const backgroundColor = variant === "Primary" ? purple : white;
+  const borderColor = variant === "Primary" ? purple : black;
   const fontWeight = variant === "Primary" ? "bold" : "normal";
 
   return (
@@ -26,7 +27,7 @@ const Button = ({ variant, onPress, width, text, disabled }: ButtonProps) => {
         },
       ]}
     >
-      <RNText style={{ color: "black", fontWeight: fontWeight }}>{text}</RNText>
+      <RNText style={{ color: black, fontWeight: fontWeight }}>{text}</RNText>
     </TouchableOpacity>
   );
 };

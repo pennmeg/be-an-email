@@ -1,6 +1,9 @@
-import { StyleSheet, View, Text as RNText } from "react-native";
+import { View } from "react-native";
 import { Fragment } from "react";
+import { Text } from "../../../components/Font";
 import PurpleText from "../../../components/PurpleText";
+
+const bullet = `\u2022 `;
 
 const Introduction = () => {
   return (
@@ -17,29 +20,17 @@ const Introduction = () => {
         text="We've all been there."
       />
       <View style={{ marginVertical: 12 }}>
-        <RNText
-          style={styles.lineHeight}
-        >{`\u2022 Those meetings that could have been an email...`}</RNText>
-        <RNText
-          style={styles.lineHeight}
-        >{`\u2022 The ones where you've wondered, "what am I doing here?"`}</RNText>
-        <RNText
-          style={styles.lineHeight}
-        >{`\u2022 Meetings that ended with more meetings.`}</RNText>
+        <Text>{`${bullet} Those meetings that could have been an email...`}</Text>
+        <Text>{`${bullet} The ones where you've wondered, "what am I doing here?"`}</Text>
+        <Text>{`${bullet} Meetings that ended with more meetings.`}</Text>
       </View>
-      <RNText style={styles.lineHeight}>
+      <Text>
         We'll help you determine what those meetings cost (estimated), to help
         make better decisions for you and your team or provide data to share
         with leadership to help get more time in the flow.
-      </RNText>
+      </Text>
     </Fragment>
   );
 };
-
-const styles = StyleSheet.create({
-  lineHeight: {
-    lineHeight: 18,
-  },
-});
 
 export default Introduction;

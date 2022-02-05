@@ -1,9 +1,10 @@
-import { StyleSheet, TouchableOpacity, Text as RNText } from "react-native";
-import { Text, View } from "../../../../components/Themed";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { Text } from "../../../../components/Font";
 import Slider from "@react-native-community/slider";
 import { SalariesType } from "../../../../constants/Salaries";
-import Button from "../../../../components/Button";
-import RemoveButton from "../../../../components/RemoveButton";
+import Button from "../../../../components/button/Button";
+import RemoveButton from "../../../../components/button/RemoveButton";
+import { black, lightGrey, white } from "../../../../constants/Colors";
 
 const MeetingAttendees = ({
   callBack,
@@ -50,36 +51,22 @@ const MeetingAttendees = ({
 
   return (
     <View style={[styles.container, { marginTop: 8 }]}>
-      <Text style={{ marginTop: 8, marginBottom: 8, fontWeight: "bold" }}>
+      <Text isBold style={{ marginTop: 8, marginBottom: 8 }}>
         Attendees
       </Text>
       {attendees.map((a, index) => {
         return (
           <View
             key={`Attendee-${index}`}
-            style={[
-              styles.section,
-              styles.transparentBackground,
-              { borderTopWidth: index === 0 ? 1 : 0 },
-            ]}
+            style={[styles.section, { borderTopWidth: index === 0 ? 1 : 0 }]}
           >
             <Text>Salary</Text>
-            <TouchableOpacity
-              style={{
-                borderColor: "black",
-                backgroundColor: "white",
-                borderWidth: 1,
-                padding: 5,
-                marginTop: 8,
-                borderRadius: 3,
-              }}
-            >
+            <TouchableOpacity style={styles.input}>
               <Text>{`$${formatDollar.format(a.salary)}`}</Text>
             </TouchableOpacity>
             <View
               style={{
                 ...styles.spacedRow,
-                ...styles.transparentBackground,
                 marginTop: 8,
               }}
             >
@@ -94,8 +81,8 @@ const MeetingAttendees = ({
               value={a.people}
               step={1}
               onValueChange={(value) => handleChange(index, value, "People")}
-              minimumTrackTintColor="#000"
-              maximumTrackTintColor="#000"
+              minimumTrackTintColor={black}
+              maximumTrackTintColor={black}
             />
             {index !== 0 && (
               <RemoveButton
@@ -121,21 +108,22 @@ export default MeetingAttendees;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#F2F2F2",
+    backgroundColor: lightGrey,
     padding: 8,
     borderRadius: 8,
   },
-  transparentBackground: { backgroundColor: "transparent" },
   spacedRow: { flexDirection: "row", justifyContent: "space-between" },
   section: {
     paddingVertical: 20,
     borderBottomWidth: 1,
-    borderColor: "black",
+    borderColor: black,
   },
   input: {
-    height: 40,
-    margin: 12,
+    borderColor: black,
+    backgroundColor: white,
     borderWidth: 1,
-    padding: 10,
+    padding: 5,
+    marginTop: 8,
+    borderRadius: 3,
   },
 });

@@ -1,13 +1,10 @@
 import { Fragment, useState } from "react";
-import { View } from "../../../../components/Themed";
+import { View } from "react-native";
 import MeetingLength from "./MeetingLength";
 import MeetingAttendees from "./MeetingAttendees";
 import { SalariesType } from "../../../../constants/Salaries";
-import Button from "../../../../components/Button";
+import Button from "../../../../components/button/Button";
 import PurpleText from "../../../../components/PurpleText";
-
-// 2F2E41 "black"
-// F2F2F2
 
 const MeetingDetails = ({ navigation }) => {
   const [meetingTime, setMeetingTime] = useState(0.25);

@@ -1,4 +1,5 @@
 import { StyleSheet, Text as RNText, View } from "react-native";
+import { purple } from "../constants/Colors";
 
 type ScreenProps = {
   text: string;
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
   },
   purpleBorder: {
     position: "absolute",
-    backgroundColor: "#A7A0FD",
+    backgroundColor: purple,
     zIndex: -1,
   },
 });
