@@ -6,6 +6,7 @@ import Button from "../../../../components/button/Button";
 import PurpleText from "../../../../components/PurpleText";
 import { SalariesType } from "../../../../types/index";
 
+// TO DO: Fix navigation types
 const MeetingDetails = ({ navigation }) => {
   const [meetingTime, setMeetingTime] = useState(0.25);
   const [attendees, setAttendees] = useState<SalariesType[]>([

@@ -11,6 +11,7 @@ import UndrawImage from "../../assets/images/undraw_Celebration_re_kc9k.png";
 import { getMeetingAmount } from "../../utils/getMeetingAmount";
 import { MeetingType } from "../../types/index";
 
+// TO DO: Fix navigation types
 type ScreenProps = {
   navigation: any;
   route: {

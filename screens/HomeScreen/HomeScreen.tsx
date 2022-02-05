@@ -8,6 +8,7 @@ import { screenWidth } from "../../constants/Layout";
 // @ts-ignore
 import UndrawImage from "../../assets/images/undraw_Meeting_re_i53h.png";
 
+// TO DO: Fix navigation types
 export default function HomeScreen({ navigation }) {
   return (
     <ScrollView style={{ backgroundColor: white, padding: 20 }}>
