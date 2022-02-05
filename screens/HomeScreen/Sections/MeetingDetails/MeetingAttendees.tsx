@@ -5,7 +5,9 @@ import Button from "../../../../components/button/Button";
 import RemoveButton from "../../../../components/button/RemoveButton";
 import { black, lightGrey, white } from "../../../../constants/Colors";
 import { SalariesType } from "../../../../types/index";
+import { formatDollar } from "../../../../constants/Salaries";
 
+// TO DO #3 Add bottom sheet component and update input component
 const MeetingAttendees = ({
   callBack,
   attendees,
@@ -47,8 +49,6 @@ const MeetingAttendees = ({
     callBack(temp);
   }
 
-  const formatDollar = Intl.NumberFormat("en-US");
-
   return (
     <View style={[styles.container, { marginTop: 8 }]}>
       <Text isBold style={{ marginTop: 8, marginBottom: 8 }}>
@@ -61,7 +61,10 @@ const MeetingAttendees = ({
             style={[styles.section, { borderTopWidth: index === 0 ? 1 : 0 }]}
           >
             <Text>Salary</Text>
-            <TouchableOpacity style={styles.input}>
+            <TouchableOpacity
+              style={styles.input}
+              onPress={() => console.log("Open Bottom Sheet")}
+            >
               <Text>{`$${formatDollar.format(a.salary)}`}</Text>
             </TouchableOpacity>
             <View
