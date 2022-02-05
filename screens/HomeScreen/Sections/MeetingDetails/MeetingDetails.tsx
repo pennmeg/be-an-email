@@ -2,9 +2,9 @@ import { Fragment, useState } from "react";
 import { View } from "react-native";
 import MeetingLength from "./MeetingLength";
 import MeetingAttendees from "./MeetingAttendees";
-import { SalariesType } from "../../../../constants/Salaries";
 import Button from "../../../../components/button/Button";
 import PurpleText from "../../../../components/PurpleText";
+import { SalariesType } from "../../../../types";
 
 const MeetingDetails = ({ navigation }) => {
   const [meetingTime, setMeetingTime] = useState(0.25);

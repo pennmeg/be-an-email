@@ -1,10 +1,10 @@
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "../../../../components/Font";
 import Slider from "@react-native-community/slider";
-import { SalariesType } from "../../../../constants/Salaries";
 import Button from "../../../../components/button/Button";
 import RemoveButton from "../../../../components/button/RemoveButton";
 import { black, lightGrey, white } from "../../../../constants/Colors";
+import { SalariesType } from "../../../../types/index";
 
 const MeetingAttendees = ({
   callBack,
