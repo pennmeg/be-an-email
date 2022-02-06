@@ -63,7 +63,7 @@ const MeetingAttendees = ({
             <Text>Salary</Text>
             <TouchableOpacity
               style={styles.input}
-              onPress={() => console.log("Open Bottom Sheet")}
+              onPress={() => console.log("--- Open Bottomsheet")}
             >
               <Text>{`$${formatDollar.format(a.salary)}`}</Text>
             </TouchableOpacity>
