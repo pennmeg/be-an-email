@@ -14,7 +14,7 @@ declare global {
 export type RootStackParamList = {
   Home: undefined;
   MeetingResults: undefined;
-  Modal: undefined;
+  BottomSheet: undefined;
   NotFound: undefined;
 };
 

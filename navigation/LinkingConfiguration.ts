@@ -9,7 +9,6 @@ const linking: LinkingOptions<RootStackParamList> = {
     screens: {
       Home: "home",
       MeetingResults: "meetingresults",
-      Modal: "modal",
       NotFound: "*",
     },
   },
