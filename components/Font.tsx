@@ -6,13 +6,13 @@ type FontSizes = "body" | "lg" | "title";
 function getFontSize(size: FontSizes) {
   switch (size) {
     case "body":
-      return 12;
+      return 14;
     case "lg":
       return 20;
     case "title":
       return 24;
     default:
-      return 12;
+      return 14;
   }
 }
 
