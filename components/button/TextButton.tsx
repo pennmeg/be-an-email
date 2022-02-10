@@ -1,10 +1,5 @@
-import {
-  TouchableOpacity,
-  Text as RNText,
-  StyleSheet,
-  ViewStyle,
-} from "react-native";
-import { black, purple } from "../../constants/Colors";
+import { TouchableOpacity, Text as RNText, StyleSheet } from "react-native";
+import { black, purple, white } from "../../constants/Colors";
 
 const TextButton = ({
   onPress,
@@ -15,10 +10,16 @@ const TextButton = ({
   text: any;
   isSelected?: boolean;
 }) => {
-  const fontColor = isSelected ? purple : black;
+  const isBold = isSelected ? "bold" : "normal";
+  const isHighlighted = isSelected ? purple : white;
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
-      <RNText style={{ color: fontColor }}>{text}</RNText>
+    <TouchableOpacity
+      style={[styles.button, { backgroundColor: isHighlighted }]}
+      onPress={onPress}
+    >
+      <RNText style={{ fontWeight: isBold, color: black, textAlign: "center" }}>
+        {text}
+      </RNText>
     </TouchableOpacity>
   );
 };
@@ -27,8 +28,10 @@ export default TextButton;
 
 const styles = StyleSheet.create({
   button: {
-    padding: 10,
-    borderBottomWidth: 1,
-    marginVertical: 6,
+    textAlign: "center",
+    justifyContent: "center",
+    margin: 4,
+    padding: 8,
+    borderRadius: 4,
   },
 });

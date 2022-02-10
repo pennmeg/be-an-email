@@ -6,6 +6,7 @@ import RemoveButton from "../../../../components/button/RemoveButton";
 import { black, lightGrey, white } from "../../../../constants/Colors";
 import { SalariesType } from "../../../../types/index";
 import { formatDollar } from "../../../../constants/Salaries";
+import { updateMeetingAttendees } from "../../../../utils/updateMeetingAttendees";
 
 // TO DO #3 Add bottom sheet component and update input component
 const MeetingAttendees = ({
@@ -15,27 +16,8 @@ const MeetingAttendees = ({
 }: {
   callBack: (attendees: SalariesType[]) => void;
   attendees: SalariesType[];
-  bottomSheet: () => void;
+  bottomSheet: (index: number) => void;
 }) => {
-  function handleChange(
-    index: number,
-    value: number,
-    type: "Salary" | "People"
-  ) {
-    let temp = [...attendees];
-    let item = { ...temp[index] };
-    switch (type) {
-      case "Salary":
-        item.salary = value;
-        break;
-      case "People":
-        item.people = value;
-        break;
-    }
-    temp[index] = item;
-    callBack(temp);
-  }
-
   function removeItem(index: number) {
     let temp = [...attendees];
     if (index > -1) {
@@ -63,7 +45,10 @@ const MeetingAttendees = ({
             style={[styles.section, { borderTopWidth: index === 0 ? 1 : 0 }]}
           >
             <Text>Salary</Text>
-            <TouchableOpacity style={styles.input} onPress={bottomSheet}>
+            <TouchableOpacity
+              style={styles.input}
+              onPress={() => bottomSheet(index)}
+            >
               <Text>{`$${formatDollar.format(a.salary)}`}</Text>
             </TouchableOpacity>
             <View
@@ -82,7 +67,15 @@ const MeetingAttendees = ({
               maximumValue={10}
               value={a.people}
               step={1}
-              onValueChange={(value) => handleChange(index, value, "People")}
+              onValueChange={(value) =>
+                updateMeetingAttendees(
+                  index,
+                  value,
+                  "People",
+                  attendees,
+                  callBack
+                )
+              }
               minimumTrackTintColor={black}
               maximumTrackTintColor={black}
             />
