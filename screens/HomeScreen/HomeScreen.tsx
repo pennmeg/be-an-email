@@ -1,3 +1,4 @@
+import React, { useRef, Fragment } from "react";
 import { StyleSheet, ScrollView, Image, View } from "react-native";
 import Instructions from "./Sections/Instructions";
 import MeetingDetails from "./Sections/MeetingDetails/MeetingDetails";
@@ -5,23 +6,34 @@ import Introduction from "./Sections/Introduction";
 import { white } from "../../constants/Colors";
 import { Text } from "../../components/Font";
 import { screenWidth } from "../../constants/Layout";
+import RBSheet from "react-native-raw-bottom-sheet";
 // @ts-ignore
 import UndrawImage from "../../assets/images/undraw_Meeting_re_i53h.png";
 
 // TO DO: Fix navigation types
 export default function HomeScreen({ navigation }) {
+  const sheetRef = useRef();
+
   return (
-    <ScrollView style={{ backgroundColor: white, padding: 20 }}>
-      <Text alignment="center" isBold fontSize="title" style={styles.title}>
-        This Meeting Could Have Been An Email
-      </Text>
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <Image width={screenWidth} source={UndrawImage} />
-      </View>
-      <Introduction />
-      <Instructions />
-      <MeetingDetails navigation={navigation} />
-    </ScrollView>
+    <Fragment>
+      <ScrollView style={{ backgroundColor: white, padding: 20 }}>
+        <Text alignment="center" isBold fontSize="title" style={styles.title}>
+          This Meeting Could Have Been An Email
+        </Text>
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <Image width={screenWidth} source={UndrawImage} />
+        </View>
+        <Introduction />
+        <Instructions />
+        <MeetingDetails
+          navigation={navigation}
+          openBottomSheet={() => sheetRef.current.open()}
+        />
+      </ScrollView>
+      <RBSheet ref={sheetRef}>
+        <Text>Hi</Text>
+      </RBSheet>
+    </Fragment>
   );
 }
 

@@ -7,7 +7,7 @@ import PurpleText from "../../../../components/PurpleText";
 import { SalariesType } from "../../../../types/index";
 
 // TO DO: Fix navigation types
-const MeetingDetails = ({ navigation }) => {
+const MeetingDetails = ({ navigation, openBottomSheet }) => {
   const [meetingTime, setMeetingTime] = useState(0.25);
   const [attendees, setAttendees] = useState<SalariesType[]>([
     { salary: 100000, people: 1 },
@@ -37,6 +37,7 @@ const MeetingDetails = ({ navigation }) => {
       />
       <MeetingAttendees
         callBack={(value) => setAttendees(value)}
+        bottomSheet={openBottomSheet}
         attendees={attendees}
       />
       <View

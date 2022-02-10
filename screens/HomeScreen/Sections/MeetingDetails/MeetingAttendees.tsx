@@ -11,9 +11,11 @@ import { formatDollar } from "../../../../constants/Salaries";
 const MeetingAttendees = ({
   callBack,
   attendees,
+  bottomSheet,
 }: {
   callBack: (attendees: SalariesType[]) => void;
   attendees: SalariesType[];
+  bottomSheet: () => void;
 }) => {
   function handleChange(
     index: number,
@@ -61,10 +63,7 @@ const MeetingAttendees = ({
             style={[styles.section, { borderTopWidth: index === 0 ? 1 : 0 }]}
           >
             <Text>Salary</Text>
-            <TouchableOpacity
-              style={styles.input}
-              onPress={() => console.log("--- Open Bottomsheet")}
-            >
+            <TouchableOpacity style={styles.input} onPress={bottomSheet}>
               <Text>{`$${formatDollar.format(a.salary)}`}</Text>
             </TouchableOpacity>
             <View
