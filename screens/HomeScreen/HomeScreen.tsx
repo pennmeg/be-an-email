@@ -10,7 +10,7 @@ import { screenWidth } from "../../constants/Layout";
 import UndrawImage from "../../assets/images/undraw_Meeting_re_i53h.png";
 
 // TO DO: Fix navigation types
-export default function HomeScreen({ navigation }) {
+export default function HomeScreen({ navigation }: { navigation: any }) {
   return (
     <ScrollView style={{ backgroundColor: white, padding: 20 }}>
       <Text alignment="center" isBold fontSize="title" style={styles.title}>

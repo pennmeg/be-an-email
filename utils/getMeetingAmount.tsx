@@ -2,6 +2,8 @@ import { HOURS_PER_YEAR } from "../constants/Salaries";
 import { MeetingType } from "../types/index";
 
 export function getMeetingAmount(meetingDetails: MeetingType) {
+  console.log("---- THE DETAILS", meetingDetails);
+
   // Get all salaries to determine hourly rate based on salary
   const allSalaries = meetingDetails.attendeeInformation.map((a) => a.salary);
   const estimatedHourlyRates = allSalaries.map((s) => s / HOURS_PER_YEAR);
@@ -22,6 +24,8 @@ export function getMeetingAmount(meetingDetails: MeetingType) {
   const total = individualRatesPerMeeting.reduce((acc, curr) => {
     return acc + curr;
   });
+
+  console.log("---- THE TOTAL", total);
 
   return total;
 }

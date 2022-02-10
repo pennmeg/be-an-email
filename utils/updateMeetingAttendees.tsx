@@ -5,10 +5,11 @@ export function updateMeetingAttendees(
   value: number,
   type: "Salary" | "People",
   attendees: SalariesType[],
-  callBack: (attendees: SalariesType[]) => void
+  callback: (value: any) => void
 ) {
   let temp = [...attendees];
   let item = { ...temp[index] };
+
   switch (type) {
     case "Salary":
       item.salary = value;
@@ -17,6 +18,8 @@ export function updateMeetingAttendees(
       item.people = value;
       break;
   }
+
   temp[index] = item;
-  callBack(temp);
+
+  callback(temp);
 }

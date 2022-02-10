@@ -1,7 +1,7 @@
 import { TouchableOpacity, Text as RNText, StyleSheet } from "react-native";
 import { black, purple, white } from "../../constants/Colors";
 
-const TextButton = ({
+const CircleButton = ({
   onPress,
   text,
   isSelected = false,
@@ -11,10 +11,14 @@ const TextButton = ({
   isSelected?: boolean;
 }) => {
   const isBold = isSelected ? "bold" : "normal";
-  const isHighlighted = isSelected ? purple : white;
+  const backgroundColor = isSelected ? purple : white;
+  const borderColor = isSelected ? black : white;
   return (
     <TouchableOpacity
-      style={[styles.button, { backgroundColor: isHighlighted }]}
+      style={[
+        styles.button,
+        { backgroundColor: backgroundColor, borderColor: borderColor },
+      ]}
       onPress={onPress}
     >
       <RNText style={{ fontWeight: isBold, color: black, textAlign: "center" }}>
@@ -24,14 +28,16 @@ const TextButton = ({
   );
 };
 
-export default TextButton;
+export default CircleButton;
 
 const styles = StyleSheet.create({
   button: {
+    width: 50,
     textAlign: "center",
     justifyContent: "center",
     margin: 4,
     padding: 8,
     borderRadius: 4,
+    borderWidth: 2,
   },
 });

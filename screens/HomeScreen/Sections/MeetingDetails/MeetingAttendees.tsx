@@ -1,36 +1,36 @@
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Text } from "../../../../components/Font";
 import Slider from "@react-native-community/slider";
 import Button from "../../../../components/button/Button";
 import RemoveButton from "../../../../components/button/RemoveButton";
 import { black, lightGrey, white } from "../../../../constants/Colors";
-import { SalariesType } from "../../../../types/index";
 import { formatDollar } from "../../../../constants/Salaries";
 import { updateMeetingAttendees } from "../../../../utils/updateMeetingAttendees";
+import { useMeetingDetails } from "../../../../hooks/useMeetingDetails";
+import CircleButton from "../../../../components/button/TextButton";
 
-// TO DO #3 Add bottom sheet component and update input component
-const MeetingAttendees = ({
-  callBack,
-  attendees,
-  bottomSheet,
-}: {
-  callBack: (attendees: SalariesType[]) => void;
-  attendees: SalariesType[];
-  bottomSheet: (index: number) => void;
-}) => {
+const NUMBER_OF_PEOPLE = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+const MeetingAttendees = () => {
+  const { setAttendees, attendees } = useMeetingDetails();
+
   function removeItem(index: number) {
     let temp = [...attendees];
+
     if (index > -1) {
       temp.splice(index, 1);
     }
-    callBack(temp);
+
+    setAttendees(temp);
   }
 
   function addItem() {
     let temp = [...attendees];
     let newItem = { salary: 25000, people: 1 };
+
     temp.push(newItem);
-    callBack(temp);
+
+    setAttendees(temp);
   }
 
   return (
@@ -44,41 +44,65 @@ const MeetingAttendees = ({
             key={`Attendee-${index}`}
             style={[styles.section, { borderTopWidth: index === 0 ? 1 : 0 }]}
           >
-            <Text>Salary</Text>
-            <TouchableOpacity
-              style={styles.input}
-              onPress={() => bottomSheet(index)}
-            >
-              <Text>{`$${formatDollar.format(a.salary)}`}</Text>
-            </TouchableOpacity>
+            {/*  ----- START Number of People */}
+            <Text>Number of People</Text>
             <View
               style={{
-                ...styles.spacedRow,
+                flexDirection: "row",
+                flexWrap: "wrap",
+                justifyContent: "center",
                 marginTop: 8,
               }}
             >
-              <Text>Number of People</Text>
-              <Text>{`${a.people}`}</Text>
+              {NUMBER_OF_PEOPLE.map((n: number) => {
+                const isSelected = a.people === n;
+                return (
+                  <CircleButton
+                    key={`Button--NumberOfPeople--${n}`}
+                    text={n}
+                    isSelected={isSelected}
+                    onPress={() =>
+                      updateMeetingAttendees(
+                        index,
+                        n,
+                        "People",
+                        attendees,
+                        (a) => setAttendees(a)
+                      )
+                    }
+                  />
+                );
+              })}
+            </View>
+            {/*  ----- END Number of People */}
+
+            {/*  ----- START Salary  */}
+            <View
+              style={{
+                ...styles.spacedRow,
+                marginTop: 16,
+              }}
+            >
+              <Text>Salary</Text>
+              <Text>{`$${formatDollar.format(a.salary)}`}</Text>
             </View>
             <Slider
-              testID={`Slider--NumberOfPeople--${index}`}
+              testID={`Slider--Salary--${index}`}
               style={{ height: 50 }}
-              minimumValue={1}
-              maximumValue={10}
-              value={a.people}
-              step={1}
+              minimumValue={25000}
+              maximumValue={1000000}
+              value={a.salary}
+              step={25000}
               onValueChange={(value) =>
-                updateMeetingAttendees(
-                  index,
-                  value,
-                  "People",
-                  attendees,
-                  callBack
+                updateMeetingAttendees(index, value, "Salary", attendees, (a) =>
+                  setAttendees(a)
                 )
               }
               minimumTrackTintColor={black}
               maximumTrackTintColor={black}
             />
+            {/*  ----- END Salary  */}
+
             {index !== 0 && (
               <RemoveButton
                 accessibilityLabel="Remove Item"
@@ -89,6 +113,7 @@ const MeetingAttendees = ({
           </View>
         );
       })}
+
       <Button
         onPress={() => addItem()}
         disabled={attendees.length === 10}

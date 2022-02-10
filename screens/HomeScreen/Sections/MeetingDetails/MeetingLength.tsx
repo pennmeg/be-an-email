@@ -2,17 +2,15 @@ import { StyleSheet, View } from "react-native";
 import { Text } from "../../../../components/Font";
 import Slider from "@react-native-community/slider";
 import { black, lightGrey } from "../../../../constants/Colors";
+import { useMeetingDetails } from "../../../../hooks/useMeetingDetails";
 
 const MAX_MEETING_TIME = 8;
 const MIN_MEETING_TIME = 0.25; // Quarter of an hour
 
-const MeetingLength = ({
-  callBack,
-  meetingTime,
-}: {
-  callBack: (value: number) => void;
-  meetingTime: number;
-}) => {
+const MeetingLength = () => {
+  const { meetingTime, setMeetingTime } = useMeetingDetails();
+  console.log("---- meetingTime", meetingTime);
+
   return (
     <View style={styles.container}>
       <View
@@ -30,7 +28,7 @@ const MeetingLength = ({
         maximumValue={MAX_MEETING_TIME}
         value={meetingTime}
         step={0.25}
-        onValueChange={(value) => callBack(value)}
+        onValueChange={(value) => setMeetingTime(value)}
         minimumTrackTintColor={black}
         maximumTrackTintColor={black}
       />
