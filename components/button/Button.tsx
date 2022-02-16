@@ -1,4 +1,9 @@
-import { StyleSheet, TouchableOpacity, Text as RNText } from "react-native";
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Text as RNText,
+  ActivityIndicator,
+} from "react-native";
 import { black, purple, white } from "../../constants/Colors";
 
 type ButtonProps = {
@@ -7,16 +12,24 @@ type ButtonProps = {
   width?: number | string;
   text: string;
   disabled?: boolean;
+  isLoading?: boolean;
 };
 
-const Button = ({ variant, onPress, width, text, disabled }: ButtonProps) => {
+const Button = ({
+  variant,
+  onPress,
+  width,
+  text,
+  disabled,
+  isLoading,
+}: ButtonProps) => {
   const backgroundColor = variant === "Primary" ? purple : white;
   const borderColor = variant === "Primary" ? purple : black;
   const fontWeight = variant === "Primary" ? "bold" : "normal";
 
   return (
     <TouchableOpacity
-      disabled={disabled}
+      disabled={disabled || isLoading}
       onPress={onPress}
       style={[
         styles.button,
@@ -27,7 +40,11 @@ const Button = ({ variant, onPress, width, text, disabled }: ButtonProps) => {
         },
       ]}
     >
-      <RNText style={{ color: black, fontWeight: fontWeight }}>{text}</RNText>
+      {isLoading ? (
+        <ActivityIndicator size="large" color={black} />
+      ) : (
+        <RNText style={{ color: black, fontWeight: fontWeight }}>{text}</RNText>
+      )}
     </TouchableOpacity>
   );
 };

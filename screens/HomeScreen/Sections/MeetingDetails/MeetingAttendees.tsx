@@ -6,14 +6,18 @@ import RemoveButton from "../../../../components/button/RemoveButton";
 import { black, lightGrey, white } from "../../../../constants/Colors";
 import { formatDollar } from "../../../../constants/Salaries";
 import { updateMeetingAttendees } from "../../../../utils/updateMeetingAttendees";
-import { useMeetingDetails } from "../../../../hooks/useMeetingDetails";
 import CircleButton from "../../../../components/button/TextButton";
+import { SalariesType } from "../../../../types/index";
 
 const NUMBER_OF_PEOPLE = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-const MeetingAttendees = () => {
-  const { setAttendees, attendees } = useMeetingDetails();
-
+const MeetingAttendees = ({
+  attendees,
+  callBack,
+}: {
+  attendees: SalariesType[];
+  callBack: (a: SalariesType[]) => void;
+}) => {
   function removeItem(index: number) {
     let temp = [...attendees];
 
@@ -21,7 +25,7 @@ const MeetingAttendees = () => {
       temp.splice(index, 1);
     }
 
-    setAttendees(temp);
+    callBack(temp);
   }
 
   function addItem() {
@@ -30,7 +34,7 @@ const MeetingAttendees = () => {
 
     temp.push(newItem);
 
-    setAttendees(temp);
+    callBack(temp);
   }
 
   return (
@@ -67,7 +71,7 @@ const MeetingAttendees = () => {
                         n,
                         "People",
                         attendees,
-                        (a) => setAttendees(a)
+                        (a) => callBack(a)
                       )
                     }
                   />
@@ -84,7 +88,7 @@ const MeetingAttendees = () => {
               }}
             >
               <Text>Salary</Text>
-              <Text>{`$${formatDollar.format(a.salary)}`}</Text>
+              <Text>{`${formatDollar.format(a.salary)}`}</Text>
             </View>
             <Slider
               testID={`Slider--Salary--${index}`}
@@ -95,7 +99,7 @@ const MeetingAttendees = () => {
               step={25000}
               onValueChange={(value) =>
                 updateMeetingAttendees(index, value, "Salary", attendees, (a) =>
-                  setAttendees(a)
+                  callBack(a)
                 )
               }
               minimumTrackTintColor={black}
