@@ -2,6 +2,14 @@
 
 Mobile app that allows individuals to determine the approximate cost of a meeting. 
 
+**Contents**
+
+* [Brainstorming](https://github.com/pennmeg/be-an-email/blob/main/README.md#wireframes-and-brainstorming)
+* [Demo](https://github.com/pennmeg/be-an-email/blob/main/README.md#demo)
+* [Screenshots](https://github.com/pennmeg/be-an-email/blob/main/README.md#screenshots)
+* [Technology](https://github.com/pennmeg/be-an-email/blob/main/README.md#technology)
+* [Running Locally](https://github.com/pennmeg/be-an-email/blob/main/README.md#getting-started)
+
 ## Wireframes and Brainstorming
 
 ![Outline of brainstorming process](https://github.com/pennmeg/be-an-email/blob/main/assets/read-me/Brainstorming.png)
