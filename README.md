@@ -29,11 +29,9 @@ Mobile app that allows individuals to determine the approximate cost of a meetin
 ![Homescreen, instructions](https://github.com/pennmeg/be-an-email/blob/main/assets/read-me/ScreenShot-Instructions.png)
 
 ![Homescreen, section to add details](https://github.com/pennmeg/be-an-email/blob/main/assets/read-me/ScreenShot-Details.png)
-
 **Meeting Calculations Screen**
 
 ![Page showing the calculation of the meeting total](https://github.com/pennmeg/be-an-email/blob/main/assets/read-me/ScreenShot-Summary.png)
-
 ## Technology
 
 * React Native
