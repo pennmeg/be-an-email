@@ -18,7 +18,7 @@ Mobile app that allows individuals to determine the approximate cost of a meetin
 
 ### Demo
 
-(Loom URL Coming Soon)
+![Demo for "Be An Email". Scroll through the homepage showing the introduction and instructions. Below this is where the meeting details form is located, where the customer has the option to increase meeting time and add attendees (number and estimated salary information). Once details have been entered custoemr clicks "Calculate" and is brought to a congratulations screen where the estimated amount of the meeting is shown.](https://drive.google.com/file/d/1yFj9n3lKg5TXHPcgrRlm7xRQpreiAtce/view?usp=sharing)
 
 ### Screenshots
 
