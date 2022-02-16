@@ -4,7 +4,7 @@ Mobile app that allows individuals to determine the approximate cost of a meetin
 
 ## Wireframes and Brainstorming
 
-(Coming Soon)
+![Outline of brainstorming process](https://github.com/pennmeg/be-an-email/blob/main/assets/read-me/Brainstorming.png)
 
 ## App
 
