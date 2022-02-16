@@ -16,13 +16,15 @@ Mobile app that allows individuals to determine the approximate cost of a meetin
 
 **Homescreen**
 
-![Homescreen, with app summary](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
-![Homescreen, instructions](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
-![Homescreen, section to add details](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+![Homescreen, with app summary](https://github.com/pennmeg/be-an-email/blob/main/assets/read-me/ScreenShot-Homepage.png)
+
+![Homescreen, instructions](https://github.com/pennmeg/be-an-email/blob/main/assets/read-me/ScreenShot-Instructions.png)
+
+![Homescreen, section to add details](https://github.com/pennmeg/be-an-email/blob/main/assets/read-me/ScreenShot-Details.png)
 
 **Meeting Calculations Screen**
 
-![Page showing the calculation of the meeting total](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+![Page showing the calculation of the meeting total](https://github.com/pennmeg/be-an-email/blob/main/assets/read-me/ScreenShot-Summary.png)
 
 ## Technology
 
